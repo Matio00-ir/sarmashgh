@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  phone     String   @unique
+  name      String?
+  grade     String?  // مثل "11"
+  stream    String?  // "riazi" | "tajrobi" | "ensani" | null برای پایه‌های ۷ تا ۹
+  createdAt DateTime @default(now())
+
+  progress  LessonProgress[]
+  chatUsage ChatUsage[]
+}
+
+model OtpCode {
+  id        String   @id @default(cuid())
+  phone     String
+  codeHash  String
+  expiresAt DateTime
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@index([phone])
+}
+
+model LessonProgress {
+  id            String    @id @default(cuid())
+  userId        String
+  lessonKey     String    // "book/chapter/lesson"
+  completedAt   DateTime?
+  quizScore     Int?
+  quizTotal     Int?
+  lastVisitedAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonKey])
+}
+
+model ChatUsage {
+  id     String @id @default(cuid())
+  userId String
+  day    String // YYYY-MM-DD
+  count  Int    @default(0)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, day])
+}

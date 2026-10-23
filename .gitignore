@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+*.db
+*.db-journal
+.env
+.env.local
+next-env.d.ts
+*.tsbuildinfo
+
+# local Claude Code settings
+.claude/settings.local.json

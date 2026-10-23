@@ -1,0 +1,401 @@
+@import "tailwindcss";
+
+/* حالت تاریک با کلاس .dark روی <html> (اسکریپت داخل layout آن را پیش از نمایش صفحه تنظیم می‌کند) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ───────────── توکن‌های سرمشق (مرجع: sarmashgh-brand-ui-brief-fa.md، بخش ۱۰) ───────────── */
+:root {
+  color-scheme: light;
+
+  --brand-primary: #365ceb;
+  --brand-primary-hover: #2548ce;
+  --brand-secondary: #6d28d9;
+  --brand-secondary-soft: #f3e8ff;
+  --on-primary: #ffffff;
+
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --surface-secondary: #f1f5f9;
+  --surface-raised: #ffffff;
+  --border: #cbd5e1;
+  --border-subtle: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  --link: #1d4ed8;
+
+  --success: #15803d;
+  --success-bg: #dcfce7;
+  --success-text: #166534;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+  --danger-text: #991b1b;
+  --warning: #92400e;
+  --warning-bg: #fef3c7;
+  --warning-text: #92400e;
+  --info: #1d4ed8;
+  --info-bg: #dbeafe;
+  --info-text: #1e40af;
+
+  --callout-definition: #365ceb;
+  --callout-tip: #7c3aed;
+  --callout-example: #0f766e;
+  --callout-mistake: #b91c1c;
+  --callout-konkur: #92400e;
+  --callout-prerequisite: #475569;
+  --callout-practice: #15803d;
+  --callout-definition-bg: #eff6ff;
+  --callout-tip-bg: #f5f3ff;
+  --callout-example-bg: #ccfbf1;
+  --callout-mistake-bg: #fee2e2;
+  --callout-konkur-bg: #fef3c7;
+  --callout-prerequisite-bg: #f1f5f9;
+  --callout-practice-bg: #dcfce7;
+
+  --subject-calculus: #2563eb;
+  --subject-geometry: #0f766e;
+  --subject-statistics: #7c3aed;
+  --subject-physics: #c2410c;
+  --subject-chemistry: #15803d;
+  --subject-general: #475569;
+
+  --font-persian: "Vazirmatn", Tahoma, sans-serif;
+  --line-height-reading: 1.9;
+  --line-height-heading: 1.45;
+
+  --elevation-card: 0 2px 8px rgb(15 23 42 / 0.05);
+  --elevation-raised: 0 8px 24px rgb(15 23 42 / 0.08);
+  --elevation-modal: 0 16px 48px rgb(15 23 42 / 0.16);
+
+  --motion-fast: 150ms;
+  --motion-normal: 220ms;
+  --motion-slow: 300ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --brand-primary: #8ba5ff;
+  --brand-primary-hover: #a5b8ff;
+  --brand-secondary: #b69cff;
+  --brand-secondary-soft: #30234f;
+  /* متن روی دکمه‌ی اصلیِ روشن در تم تاریک باید تیره باشد (کنتراست ~۸:۱) */
+  --on-primary: #0b1120;
+
+  --background: #0b1120;
+  --surface: #111b2e;
+  --surface-secondary: #1b2940;
+  --surface-raised: #22324b;
+  --border: #334155;
+  --border-subtle: #22324b;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #b6c2d4;
+  --text-muted: #94a3b8;
+  --text-inverse: #0f172a;
+  --link: #a5b4fc;
+
+  --success: #4ade80;
+  --success-bg: #123b2b;
+  --success-text: #86efac;
+  --danger: #fca5a5;
+  --danger-bg: #451d28;
+  --danger-text: #fecaca;
+  --warning: #fcd34d;
+  --warning-bg: #422f12;
+  --warning-text: #fde68a;
+  --info: #93c5fd;
+  --info-bg: #172f50;
+  --info-text: #bfdbfe;
+
+  --callout-definition: #a5b4fc;
+  --callout-tip: #c4b5fd;
+  --callout-example: #5eead4;
+  --callout-mistake: #fca5a5;
+  --callout-konkur: #fcd34d;
+  --callout-prerequisite: #cbd5e1;
+  --callout-practice: #86efac;
+  --callout-definition-bg: #172b50;
+  --callout-tip-bg: #30234f;
+  --callout-example-bg: #123b3a;
+  --callout-mistake-bg: #451d28;
+  --callout-konkur-bg: #422f12;
+  --callout-prerequisite-bg: #1b2940;
+  --callout-practice-bg: #123b2b;
+
+  --subject-calculus: #8ba5ff;
+  --subject-geometry: #5eead4;
+  --subject-statistics: #c4b5fd;
+  --subject-physics: #fdba74;
+  --subject-chemistry: #86efac;
+  --subject-general: #cbd5e1;
+
+  --elevation-card: 0 2px 8px rgb(0 0 0 / 0.15);
+  --elevation-raised: 0 8px 24px rgb(0 0 0 / 0.22);
+  --elevation-modal: 0 16px 48px rgb(0 0 0 / 0.35);
+}
+
+/* اتصال توکن‌ها به کلاس‌های تیلویند: bg-surface، text-muted، border-border و… */
+@theme inline {
+  --color-primary: var(--brand-primary);
+  --color-primary-hover: var(--brand-primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-secondary: var(--brand-secondary);
+  --color-secondary-soft: var(--brand-secondary-soft);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-raised: var(--surface-raised);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-foreground: var(--text-primary);
+  --color-subtle: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-inverse: var(--text-inverse);
+  --color-link: var(--link);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-success-text: var(--success-text);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-text: var(--danger-text);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-text: var(--warning-text);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-info-text: var(--info-text);
+  --font-sans: var(--font-persian);
+  --shadow-card: var(--elevation-card);
+  --shadow-raised: var(--elevation-raised);
+  --shadow-modal: var(--elevation-modal);
+  --ease-standard: var(--motion-ease);
+}
+
+@theme {
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-card: 1rem;
+  --radius-xl: 1.5rem;
+  --text-display: 2rem;
+  --text-display--line-height: 1.45;
+  --text-h1: 1.75rem;
+  --text-h1--line-height: 1.45;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.45;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.5;
+  --text-h4: 1.125rem;
+  --text-h4--line-height: 1.6;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-label: 0.875rem;
+  --text-caption: 0.75rem;
+}
+
+/* ───────────── پایه ───────────── */
+html {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text-primary);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand-primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-primary) 25%, transparent);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: var(--line-height-heading);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ───────────── فرمول‌ها (KaTeX) در متن راست‌به‌چپ ─────────────
+   فرمول همیشه چپ‌به‌راست و جدا از جهت متن است.
+   فرمول درون‌خطی بین دو خط نمی‌شکند (وگرنه ترتیبش به هم می‌ریزد)؛ فرمول بلند را با $$ بنویسید. */
+.katex {
+  direction: ltr;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+  font-size: 1.06em;
+}
+.katex-display {
+  direction: ltr;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0.75rem 0;
+  padding: 0.25rem 0;
+}
+
+/* ───────────── متن آموزشی ───────────── */
+.prose-fa {
+  line-height: 1.85;
+  overflow-wrap: break-word;
+}
+.lesson-content .prose-fa {
+  font-size: 1.0625rem;
+  line-height: var(--line-height-reading);
+}
+@media (min-width: 640px) {
+  .lesson-content .prose-fa {
+    font-size: var(--text-body-lg);
+  }
+}
+.prose-fa p {
+  margin: 0.65rem 0;
+}
+.prose-fa ul,
+.prose-fa ol {
+  margin: 0.65rem 0;
+  padding-inline-start: 1.4rem;
+}
+.prose-fa ul {
+  list-style: disc;
+}
+.prose-fa ol {
+  list-style: persian;
+}
+.prose-fa li {
+  margin: 0.3rem 0;
+}
+.prose-fa li::marker {
+  color: var(--text-muted);
+}
+.prose-fa strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.prose-fa h3 {
+  font-weight: 600;
+  font-size: var(--text-h4);
+  margin: 1.5rem 0 0.5rem;
+}
+.prose-fa a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-fa table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1rem 0;
+  font-size: 0.95em;
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.prose-fa th,
+.prose-fa td {
+  padding: 0.55rem 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-subtle);
+  border-inline-start: 1px solid var(--border-subtle);
+}
+.prose-fa tr > :first-child {
+  border-inline-start: 0;
+}
+.prose-fa tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.prose-fa th {
+  background: var(--surface-secondary);
+  font-weight: 600;
+  font-size: 0.92em;
+}
+.prose-fa code {
+  background: var(--surface-secondary);
+  padding: 0.05rem 0.35rem;
+  border-radius: 0.3rem;
+  font-size: 0.88em;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.prose-fa blockquote {
+  border-inline-start: 3px solid var(--border);
+  padding-inline-start: 0.9rem;
+  color: var(--text-secondary);
+}
+.prose-fa > :first-child {
+  margin-top: 0;
+}
+.prose-fa > :last-child {
+  margin-bottom: 0;
+}
+
+/* ───────────── حرکت ───────────── */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise-in var(--motion-normal) var(--motion-ease) both;
+}
+
+@keyframes typing-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+.typing-dot {
+  animation: typing-dot 1.2s infinite;
+}
+
+/* اسکرول‌بار نازک برای پنل‌ها */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
